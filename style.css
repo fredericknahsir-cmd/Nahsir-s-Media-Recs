@@ -37,11 +37,32 @@ nav button:hover {
 .card {
     background-color: #1e1e1e;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba (0,0,0,0.2);
+    border: 1px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card.game:hover {
+    border-color: #2ed573;
+    box-shadow: 0 12px 28px rgba(46, 213, 115, 0.24);
+}
+
+.card.movie:hover {
+    border-color: #1e90ff;
+    box-shadow: 0 12px 28px rgba(30, 144, 255, 0.24);
+}
+
+.card.show:hover {
+    border-color: #ffa502;
+    box-shadow: 0 12px 28px rgba(255, 165, 2, 0.24);
 }
 
 .card-image {
@@ -49,6 +70,11 @@ nav button:hover {
     height: 180px;
     object-fit: cover;
     margin-bottom: 0;
+    transition: transform 350ms ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.06);
 }
 
 .card h3, .card p {
@@ -69,3 +95,18 @@ nav button:hover {
 .game .badge { background-color: #2ed573; }
 .movie .badge { background-color: #1e90ff; }
 .show .badge { background-color: #ffa502}
+
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .card-image {
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .card:hover .card-image {
+        transform: none;
+    }
+}
